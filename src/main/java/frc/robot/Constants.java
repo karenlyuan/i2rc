@@ -21,6 +21,7 @@ public final class Constants {
 
     public static final class JoystickAxis {
         public static final int YAxis = 1;
+        public static final int XAxis = 0;
     } 
 
 
