@@ -24,6 +24,8 @@ public class DriveTrain extends SubsystemBase {
 
   private DifferentialDrive _diffDrive;
 
+  private double circumference = 1;
+
 
   /** Creates a new DriveTrain. */
   public DriveTrain() {
@@ -42,12 +44,6 @@ public class DriveTrain extends SubsystemBase {
     _righttDriveTalon.configFactoryDefault();
     _righttDriveTalon.setInverted(false);
     _righttDriveTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);  
-    
-    // method to get position
-    _leftDriveTalon.getSelectedSensorPosition(0);
-    
-    // method to get velocity
-    _leftDriveTalon.getSensorCollection().getPulseWidthVelocity();
 
   }
 
@@ -68,5 +64,13 @@ public class DriveTrain extends SubsystemBase {
     _leftDriveTalon.setSelectedSensorPosition(0,0,10);
     _righttDriveTalon.setSelectedSensorPosition(0,0,10);
 
+  }
+
+  public double position() {
+    return _leftDriveTalon.getSelectedSensorPosition(0);
+  }
+
+  public double velocity(){
+    return _leftDriveTalon.getSensorCollection().getPulseWidthVelocity();
   }
 }
