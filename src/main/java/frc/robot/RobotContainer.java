@@ -13,7 +13,9 @@ import frc.robot.commands.TankDrive;
 import frc.robot.commands.TimedAuto;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
+//import jdk.tools.jlink.resources.plugins;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.Path;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -29,6 +31,7 @@ public class RobotContainer {
   private final TankDrive _tankDrive;
   private final TimedAuto auto;
   private final ArcadeDrive _arcadeDrive;
+  private final Path p = new Path();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -59,8 +62,12 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public TimedAuto getAutonomousCommand() {
+  public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return auto;
+    return p;
+  }
+
+  public DriveTrain getDriveTrain() {
+    return _driveTrain;
   }
 }
