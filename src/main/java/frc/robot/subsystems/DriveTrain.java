@@ -63,7 +63,6 @@ public class DriveTrain extends SubsystemBase {
   public void resetEncoders() {
     _leftDriveTalon.setSelectedSensorPosition(0,0,10);
     _righttDriveTalon.setSelectedSensorPosition(0,0,10);
-
   }
 
   public double getPosition() {
