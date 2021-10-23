@@ -66,11 +66,17 @@ public class DriveTrain extends SubsystemBase {
 
   }
 
-  public double position() {
-    return _leftDriveTalon.getSelectedSensorPosition(0);
+  public double getPosition() {
+    return ((_leftDriveTalon.getSelectedSensorPosition() + _righttDriveTalon.getSelectedSensorPosition())/2) * (circumference/4096);
+    //average distance of both left and right
   }
 
-  public double velocity(){
-    return _leftDriveTalon.getSensorCollection().getPulseWidthVelocity();
+  public double getVelocity(){
+    return ((_leftDriveTalon.getSensorCollection().getPulseWidthVelocity() + _righttDriveTalon.getSensorCollection().getPulseWidthVelocity())/2) * (circumference/4096);
   }
+
+  public double getAngle() {
+    return navx.getAngle();
+  }
+
 }
