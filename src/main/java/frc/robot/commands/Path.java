@@ -20,6 +20,6 @@ public class Path extends SequentialCommandGroup {
   public Path() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new EncoderDrive(rc.getDriveTrain(), 0.5,1), new GyroTurn(rc.getDriveTrain(), dt.getAngle(), dt.getPosition()));
+    addCommands(new EncoderDrive(rc.getDriveTrain(), 0.5,1), new GyroTurn(rc.getDriveTrain(), 90, 0.3));
   }
 }

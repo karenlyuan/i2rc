@@ -13,16 +13,14 @@ public class GyroTurn extends CommandBase {
 
   DriveTrain d;
   private double speed;
-  private double distance;
   private double angle;
-  private double position;
 
   /** Creates a new EncoderDrive. */
-  public GyroTurn(DriveTrain d, double angle, double position) {
+  public GyroTurn(DriveTrain d, double angle, double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.d = d;
     this.angle = angle;
-    this.position = position;
+    this.speed = speed;
 
     addRequirements(d);
   }
@@ -38,20 +36,19 @@ public class GyroTurn extends CommandBase {
   @Override
   public void execute() {
     if(angle < 0) {
-      tankDrive(-speed, speed);
+      d.tankDrive(-speed, speed);
     } else if (angle > 0) {
-      tankDrive(speed, -speed);
+      d.tankDrive(speed, -speed);
     } else {
-      tankDrive(0,0);
+      d.tankDrive(0,0);
     }
-  }
-
-  private void tankDrive(double e, double speed2) {
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    d.tankDrive(0, 0);
+  }
 
   // Returns true when the command should end.
   @Override
