@@ -4,46 +4,59 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
-public class EncoderDrive extends CommandBase {
+public class GyroTurn extends CommandBase {
 
   DriveTrain d;
   private double speed;
   private double distance;
+  private double angle;
+  private double position;
 
   /** Creates a new EncoderDrive. */
-  public EncoderDrive(DriveTrain driveTrain, double speed, double distance) {
+  public GyroTurn(DriveTrain d, double angle, double position) {
     // Use addRequirements() here to declare subsystem dependencies.
-    d = new DriveTrain();
-    this.speed = speed;
-    this.distance = distance;
+    this.d = d;
+    this.angle = angle;
+    this.position = position;
+
+    addRequirements(d);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    d.resetEncoders();
+    d.navxReset();
   }
 
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    d.tankDrive(speed, speed);
+    if(angle < 0) {
+      tankDrive(-speed, speed);
+    } else if (angle > 0) {
+      tankDrive(speed, -speed);
+    } else {
+      tankDrive(0,0);
+    }
+  }
+
+  private void tankDrive(double e, double speed2) {
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    d.tankDrive(0, 0);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return d.getPosition() >= distance;
+    return Math.abs(d.getAngle()) >= (Math.abs(angle));
   }
+
 }

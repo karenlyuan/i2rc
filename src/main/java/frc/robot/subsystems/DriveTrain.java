@@ -78,4 +78,8 @@ public class DriveTrain extends SubsystemBase {
     return navx.getAngle();
   }
 
+  public void navxReset() {
+    navx.reset();
+  }
+
 }
