@@ -6,7 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.DriveTrain;
+//import frc.robot.subsystems.DriveTrain;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -14,7 +14,7 @@ import frc.robot.subsystems.DriveTrain;
 public class Path extends SequentialCommandGroup {
 
   private RobotContainer rc = new RobotContainer();
-  private DriveTrain dt = new DriveTrain();
+  //private DriveTrain dt = new DriveTrain();
 
   /** Creates a new Path. */
   public Path() {

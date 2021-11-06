@@ -4,8 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
@@ -43,7 +41,7 @@ public class PIDForward extends CommandBase {
     if(speed > 0.7) {
       speed = 0.7;
     }
-    
+
     if (speed < 0.1) {
       speed = 0.1;
     }
